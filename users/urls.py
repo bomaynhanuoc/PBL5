@@ -9,5 +9,5 @@ urlpatterns = [
     path('delete', views.delete_user, name='delete_user'),
     path('upload-image', views.upload_image, name='upload_image'),
     path('sign-in', views.sign_in, name='sign_in'),
-    path('sign-out', views.sign_out, name='sign_out')
+    path('open-door', views.open_door, name='open_door')
 ]
