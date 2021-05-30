@@ -26,7 +26,7 @@ SECRET_KEY = 'dngwt3+nd@m5r=-uz%(xe*6+w3^_-r^r&*3)yb#d=do42%2k+y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', '192.168.1.2', '192.168.1.6']
+ALLOWED_HOSTS = ['*', '192.168.1.2']
 
 # environment variable
 env = environ.Env()
