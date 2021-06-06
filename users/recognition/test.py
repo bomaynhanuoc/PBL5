@@ -1,9 +1,6 @@
 import os
 import numpy as np
 import dlib
-import cv2
-from PIL import Image
-import datetime
 import pandas as pd
 
 
@@ -11,10 +8,6 @@ sp = dlib.shape_predictor(
         (os.path.join(os.getcwd(), 'users\\recognition', 'shape_predictor_5_face_landmarks.dat')))
 model = dlib.face_recognition_model_v1((os.path.join(os.getcwd(), 'users\\recognition', 'dlib_face_recognition_resnet_model_v1.dat')))
 
-
-# def loaddata(dt):
-#     return arr
-#    return pd.read_csv("training.csv")
 
 def recognizer(img, vectors, names):
     img1 = dlib.load_rgb_image(img)
@@ -36,8 +29,8 @@ def recognizer(img, vectors, names):
                 min = distance
                 name = names[i]
 
-        thresh_hold = 0.393587  # thresh_hold được tính từ các dữ liệu dataset trước đó
-        print(min)
+        thresh_hold = 0.393587
+        # print(min)
         if min < thresh_hold:
             return name
         else:

@@ -1,8 +1,6 @@
 from aiproject.firebase_config import database, storage
 from users.recognition.training import generate_vector
-import pandas as pd
 import os
-import json
 
 
 def save_to_db(mode='default', created_new_file=None):
@@ -16,30 +14,27 @@ def save_to_db(mode='default', created_new_file=None):
             abs_path = os.path.abspath('{0}/{1}'.format(dirpath, f))
             row = df.iloc[count].to_dict()
 
-            # save img into storage
             res = storage.child(f).put(abs_path)
             imageUrl = storage.child(f).get_url(res['downloadTokens'])
 
-            # save data infomation in realtime db
             data = {
                 'imageName': f,
                 'imageUrl': imageUrl,
                 'name': f.split('.')[0],
                 'vector': row
             }
-            database.child("IDs").push(data)
+            database.child("IDs").child("user{0}".format(count)).set(data)
             count += 1
     elif mode == 'create' and created_new_file != None:
+        database.child('IDs').remove()
         for f in filenames:
             abs_path = os.path.abspath('{0}/{1}'.format(dirpath, f))
             row = df.iloc[count].to_dict()
 
             if f == created_new_file:
-                # save img into storage
                 res = storage.child(created_new_file).put(abs_path)
                 imageUrl = storage.child(created_new_file).get_url(
                     res['downloadTokens'])
-                # save data infomation in realtime db
                 data = {
                     'imageName': created_new_file,
                     'imageUrl': imageUrl,
@@ -47,17 +42,30 @@ def save_to_db(mode='default', created_new_file=None):
                     'vector': row
                 }
 
-                database.child("IDs").push(data)
+                database.child("IDs").child("user{0}".format(count)).set(data)
             else:
-                print(f)
-                # update data infomation in realtime db
-                database.child("IDs").update({'vector': row})
+                data = {
+                    'imageName': f,
+                    'imageUrl': storage.child(f).get_url(token=None),
+                    'name': f.split('.')[0],
+                    'vector': row,
+                }
+                database.child("IDs").child("user{0}".format(count)).set(data)
             count += 1
         pass
     else:
+        database.child('IDs').remove()
+
         for f in filenames:
             abs_path = os.path.abspath('{0}/{1}'.format(dirpath, f))
             row = df.iloc[count].to_dict()
-            # update data infomation in realtime db
-            database.child("IDs").update({'vector': row})
+
+            data = {
+                'imageName': f,
+                'imageUrl': storage.child(f).get_url(token=None),
+                'name': f.split('.')[0],
+                'vector': row,
+            }
+
+            database.child("IDs").child("user{0}".format(count)).set(data)
             count += 1
