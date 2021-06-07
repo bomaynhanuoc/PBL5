@@ -1,0 +1,54 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Night mode">
+
+        <CheckBoxPreference
+            android:title="Night mode"
+            app:key="night_mode"
+            android:summaryOff="Night mode is deactivated"
+            android:summaryOn="Night mode is activated"
+            android:defaultValue="false">
+        </CheckBoxPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Alerts">
+        <Preference
+            android:title="Notification settings">
+        </Preference>
+        <Preference
+            android:title="Settings">
+
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="App lock">
+
+        <SwitchPreferenceCompat
+            app:key="app_lock"
+            app:summary="Whenever you try to access the app, it will request you to authenticate"
+            app:title="Require password to access to app" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="App version">
+        <EditTextPreference
+            android:title="2.0.5.10.21"
+            app:summary="This is the lastest version">
+        </EditTextPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Screen">
+        <SeekBarPreference
+            android:title="Font size"
+            app:key="font_size">
+        </SeekBarPreference>
+        <SeekBarPreference
+            android:title="Brightness level"
+            app:key="brightness"
+            app:summary="@string/brightness_percentage">
+        </SeekBarPreference>
+    </PreferenceCategory>
+
+</PreferenceScreen>

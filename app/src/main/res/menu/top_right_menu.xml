@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_settings"
+        android:checkable="false"
+        android:title="Settings"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/nav_privacy"
+        android:checkable="false"
+        android:title="Privacy Policy"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/nav_terms_conditions"
+        android:checkable="false"
+        android:title="Terms and Conditions"
+        app:showAsAction="collapseActionView"/>
+    <item
+        android:id="@+id/nav_help_feedback"
+        android:checkable="false"
+        android:title="Helps and feedback"
+        app:showAsAction="collapseActionView" />
+</menu>

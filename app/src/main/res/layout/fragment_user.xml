@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text1"
+        android:src="@drawable/ic_person_outline"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login to use the app"
+        android:textSize="20sp"
+        android:layout_centerInParent="true"/>
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text1"
+        android:text="Log In"
+        android:visibility="gone"
+        android:background="@drawable/btn_bg"
+        android:layout_marginVertical="30dp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn1"
+        android:layout_marginTop="20dp"
+        android:text="Please enter the server IP below"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/ipedit"
+        android:layout_marginLeft="100dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
+        android:layout_marginVertical="10dp"
+        android:hint="Enter IP" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ipedit"
+        android:layout_below="@id/tv1"
+        android:background="@drawable/btn_bg"
+        android:text="CONFIRM"
+        android:layout_marginLeft="10dp"
+        android:layout_marginVertical="10dp"
+        android:id="@+id/btn2"/>
+    <Button
+        android:id="@+id/testnoti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Noti"
+        android:visibility="invisible"
+        />
+
+
+</RelativeLayout>

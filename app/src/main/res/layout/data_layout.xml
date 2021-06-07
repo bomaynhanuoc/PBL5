@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/DBidtv"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="ID"
+            android:gravity="center">
+        </TextView>
+        <TextView
+            android:id="@+id/DBnametv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/DBidtv"
+            android:layout_toLeftOf="@+id/DBimageview"
+            android:text="Name">
+        </TextView>
+        <ImageView
+            android:id="@+id/DBimageview"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp">
+        </ImageView>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

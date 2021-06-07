@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "633706532746",
+    "project_id": "wireless-lock-2",
+    "storage_bucket": "wireless-lock-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633706532746:android:dffccd4b68b93985a4c273",
+        "android_client_info": {
+          "package_name": "com.bmnhanuoc.wirelesslock20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633706532746-jccvfppkhq6rj438p25fd1vd1pepeau8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-65J2ApvxKXZzJYcz5PA29qZhBO7mICQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633706532746-jccvfppkhq6rj438p25fd1vd1pepeau8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
