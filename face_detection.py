@@ -44,7 +44,6 @@ if __name__ == '__main__':
                 try:
                     _, img_encoded = cv2.imencode('.jpg', img)
                     requests.post(url = "http://192.168.1.2:8000/users/recognize", files = {"image" : img_encoded.tobytes()})
-                    print("Sending image")
                 except:
                     doNothing()
             time.sleep(10)
