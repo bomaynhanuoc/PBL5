@@ -16,7 +16,7 @@
 ### Hardware:
 * Checkout sang branch HARDWARE:
 ```shell git checkout HARDWARE```
-* Cài đặt các thư viện để chạy raspberry:
+* Cài đặt các thư viện để chạy raspberry:\
 ```shell pip install opencv-python requests```
 * Đưa 3 file face_detection.py, deploy.prototxt, res10_300x300_ssd_iter_140000.caffemodel vào cùng một thư mục trên raspberry và chạy ```shell python face_detection.py```.
 * Cài đặt các thư viện để chạy ESP8266:
