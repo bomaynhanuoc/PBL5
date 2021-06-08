@@ -98,12 +98,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<PostString> call, Response<PostString> response) {
                 if(response.isSuccessful()) {
-                    Log.i(TAG, "post submitted to API." + response.body().toString());
+                    Toast.makeText(getContext(), "Door opened!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Login require", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<PostString> call, Throwable t) {
-                Log.e(TAG, "Unable to submit post to open to API.");
+
             }
         });
     }
@@ -117,16 +119,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<AddUser> call, Response<AddUser> response) {
                 if(response.isSuccessful()) {
-                    Toast.makeText(getContext(),"Success",Toast.LENGTH_LONG).show();
-                    Log.i(TAG, "post submitted to API." + response.body().toString());
+                    Toast.makeText(getContext(),"Adding success",Toast.LENGTH_LONG).show();
                     editText.setVisibility(View.GONE);
                     btn1.setVisibility(View.GONE);
                 }
             }
             @Override
             public void onFailure(Call<AddUser> call, Throwable t) {
-                Toast.makeText(getContext(), "Failure", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "Unable to submit post add to API.");
+                Toast.makeText(getContext(), "Fail to add, try again.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -161,7 +161,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailure(Call<PostString2> call, Throwable t) {
                 Toast.makeText(getContext(),"Please enter the IP first",Toast.LENGTH_LONG).show();
-                Log.e(TAG, "Unable to submit post to check to API.");
             }
         });
     }
