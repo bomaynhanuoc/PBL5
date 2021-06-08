@@ -1,5 +1,6 @@
 from django.urls import path
 from aiproject.firebase_config import database
+from users.utils.db_interact import save_to_db
 
 from . import views
 
@@ -14,4 +15,5 @@ urlpatterns = [
     path('open-door', views.open_door, name='open_door')
 ]
 
+# save_to_db(mode='init')
 database.child('Result').remove()

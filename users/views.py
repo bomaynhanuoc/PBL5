@@ -24,6 +24,7 @@ import requests
 @api_view(['GET'])
 def index(request):
     print(socket.gethostbyname(socket.gethostname()))
+    userIds = []
     return Response({'message': 'Connected to the server!!'})
 
 
@@ -34,10 +35,21 @@ def get_user(request):
             raise TypeError(auth.current_user)
         else:
             user = auth.current_user
+            users = []
 
             IDs = database.child('IDs').get(
-                token=user['idToken']).val()
+                token=user['idToken'])
+
+            for user in IDs.each():
+                data = {
+                    'id': user.key(),
+                    'name': user.val()['name'],
+                    'imageUrl': user.val()['imageUrl']
+                }
+                users.append(data)
+
     except HTTPError as e:
+        # print(e)
         error_json = e.args[1]
         error = json.loads(error_json)
         return Response(error['error'])
@@ -45,14 +57,13 @@ def get_user(request):
         print(t.args)
         return Response({'message': 'Unauthorized'}, status.HTTP_403_FORBIDDEN)
 
-    return Response(IDs)
+    return Response(users)
 
 
 @api_view(['GET'])
 def get_result(request):
     try:
         result = database.child('Result').get().val()
-        print(result)
         if result is None:
             data = {
                 'name': "don't have data yet",
@@ -76,14 +87,12 @@ def recognize(request):
             file = request.FILES['image']
             print(file)
 
-
             content_file = ContentFile(file.read())
             path = default_storage.save(
                 'tmp/{0}.jpg'.format(file.name), content_file)
             tmp_file = os.path.join(settings.MEDIA_ROOT, path)
 
             abs_file_dir = os.path.abspath(tmp_file)
-
 
             all_users = database.child('IDs').get()
             userIds = []
@@ -95,11 +104,9 @@ def recognize(request):
                 names.append(user.val()['name'])
                 vectors.append(user.val()['vector'])
 
-
             result = recognizer(tmp_file, vectors, names)
             print(result)
             data = {}
-
 
             if result in names:
                 res = storage.child(file.name).put(abs_file_dir)
@@ -111,8 +118,9 @@ def recognize(request):
                 }
                 database.child('Result').set(data)
 
-
                 os.remove(abs_file_dir)
+
+                time.sleep(5)
 
                 r = requests.get("http://192.168.1.2:8000/users/open-door")
                 return Response(json.loads(r.text))
@@ -126,7 +134,6 @@ def recognize(request):
                     "imageUrl": image_of_strange_user
                 }
                 database.child('Result').set(data)
-
 
                 os.remove(abs_file_dir)
                 return Response(data)
@@ -153,22 +160,22 @@ def create_user(request):
             image_url = myData['imageUrl']
 
             new_file = "{0}.jpg".format(strange_face_name)
-            storage.child('image.jpg').download('', new_file)
+            storage.child('image').download('', new_file)
 
             moved_dst = os.path.join('Data', new_file)
             os.rename(new_file, moved_dst)
 
             save_to_db('create', new_file)
 
-            return Response({'message': 'user created'}, status.HTTP_201_CREATED)
+            return Response({'message': 'user created'}, status.HTTP_200_OK)
     except TypeError as t:
         return Response({'message': 'Unauthorized'}, status.HTTP_403_FORBIDDEN)
     except Exception as e:
-        print(e)
-        return Response(str(e.args), status=status.HTTP_400_BAD_REQUEST)
+        # print(e)
+        return Response({'message': 'user created'}, status.HTTP_200_OK)
 
 
-@api_view(['DELETE'])
+@api_view(['POST'])
 def delete_user(request):
     try:
         if auth.current_user == None:
@@ -192,7 +199,7 @@ def delete_user(request):
                 os.getcwd()), 'Data', file_name)
             os.remove(abs_path)
 
-            save_to_db()
+            # save_to_db()
 
             return Response({'message': 'Deleted successfully'})
     except TypeError as t:
